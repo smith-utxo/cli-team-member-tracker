@@ -1,6 +1,5 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
-const mysql = require('mysql2');
 const connection = require('./db/connection');
 
 
@@ -50,8 +49,12 @@ const UpdateEmployeeRoles = () => {
 }
 
 const viewAllRoles = () => { 
-  //SELECT * FROM roles; 
-}
+  const sql = `SELECT * FROM roles`;
+  connection.query(sql, (err, rows) => {
+    console.table(rows);
+    menu(); 
+  })
+ }
 
 const addRole = () => { }
 
