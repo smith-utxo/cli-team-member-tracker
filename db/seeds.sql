@@ -1,4 +1,4 @@
-INSERT INTO departments (names)  
+INSERT INTO departments (label)  
 VALUES 
 ('Engineering'), 
 ('Finance'),
@@ -18,11 +18,11 @@ VALUES
 
 INSERT INTO employees (first_name, last_name, roles_id, manager)
 VALUES 
-('John', 'Armstrong', 1, null), 
+('John', 'Armstrong', 1, NULL), 
 ('Mike', "Johnson", 2, "John Armstrong"), 
-("Ashley", "Rodriguez", 3, null), 
-("Kevin", "Arnold", 4, "Ashely Rodriguez"),
-("Kunal", "Singh", 5, null), 
+("Ashley", "Rodriguez", 3, NULL), 
+("Kevin", "Arnold", 4, "Ashley Rodriguez"),
+("Kunal", "Singh", 5, NULL), 
 ("Malia", "Brown", 6, "Kunal Singh"),
-("Sarah", "Lourd", 7, null), 
+("Sarah", "Lourd", 7, NULL), 
 ("Tom", "Allen", 8, "Sarah Lourd");
