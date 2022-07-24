@@ -4,7 +4,8 @@ A command line interface to manage a company's employee database. This applicati
 ## ScreenShot
 ![](db/assets/screenshot.PNG)
 
-## Heroku Deployed URL
+## Github URL Link: 
+https://github.com/smith-utxo/cli-team-member-tracker
 
 ## Legal Notice
 © Adam T. Smith, U of M Coding Boot Camp 
