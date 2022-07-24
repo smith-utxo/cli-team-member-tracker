@@ -1,5 +1,5 @@
 ## Purpose
-A command line interface to manage a company's employee database. This application uses Node.js, Inquirer, and MySQL. 
+A command line interface to manage a company's employee database. This application uses Node.js, Inquirer, MySQL and the console.table package. 
 
 ## ScreenShot
 ![](db/assets/screenshot.PNG)
