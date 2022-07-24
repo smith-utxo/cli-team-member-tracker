@@ -44,14 +44,31 @@ const menu = () => {
 const UpdateEmployeeRoles = () => {
   inquirer.prompt(
     [{
-      type: 'list',
-      name: 'roles',
-      message: 'Which role do you want to update?',
-      choices: ['Sales Lead', 'Salesperson', 'Lead Engineer', 'Software Engineer', 'Account Manager', 'Accountant', 'Legal Team Lead', 'Lawyer']
+      type: 'input',
+      name: 'employee',
+      message: 'Please Enter the Employees ID you want to udpate.'
+    },
+    {
+      type: 'input', 
+      name: 'role',
+      message: 'Please Enter the Employees new Role ID.'
     }]
   )
-  menu();
-}
+      .then(function(answers) {
+        const employee = answers.employee; 
+        const role = answers.role; 
+
+        const sql = `UPDATE employees SET roles_id = "${role}" WHERE id = "${employee}"`;
+
+        connection.query(sql, function(err, res) {
+          if(err){
+            throw err; 
+          }
+          console.log("Employees Role has been updated!"); 
+          menu(); 
+        })
+      })
+  }
 
 const addEmployee = () => {
   inquirer.prompt(
