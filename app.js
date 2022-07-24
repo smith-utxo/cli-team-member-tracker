@@ -73,10 +73,25 @@ const addRole = () => {
     {
       type: 'list',
       name: 'department',
-      message: 'Which department does the role belong to?',
-      choices: ['Engineering', 'Finance', 'Legal', 'Sales']
+      message: 'Which department does the role belong to?1=Engineering 2=finance 3=Sales 4=Legal',
+      choices: [1, 2, 3, 4]
     }
-  ]) /*
+  ])
+    .then(function (answers) {
+      const role_title = answers.title;
+      const role_salary = answers.salary;
+      const role_department = answers.department;
+
+      const sql = `INSERT INTO roles (title, salary, departments_id) VALUES ("${role_title}", "${role_salary}", "${role_department}")`;
+      connection.query(sql, function (err, res) {
+        if (err) {
+          throw err;
+        }
+        console.table(res);
+        menu();
+      })
+    })
+  /*
     .then(({title, salary, department}) => {
       const sql = connection.query(
         `INSERT INTO roles (title, salary, department)
@@ -103,20 +118,20 @@ const addDepartment = () => {
     }
   ])
     .then(function (answers) {
-      const newDepartment = answers.label;  
+      const newDepartment = answers.label;
       const sql = `INSERT INTO departments (label) VALUES ("${newDepartment}")`;
       connection.query(sql, function (err, res) {
-        if (err) { 
+        if (err) {
           throw err;
         }
-        console.table(res); 
-        menu(); 
+        console.table(res);
+        menu();
       })
       /*
       connection.query('INSERT INTO departments SET label = ?', insert );
       */
     })
- }
+}
 
 const viewAllEmployees = () => {
   const sql = `SELECT * from employees`;
