@@ -4,6 +4,9 @@ A command line interface to manage a company's employee database. This applicati
 ## ScreenShot
 ![](db/assets/screenshot.PNG)
 
+## WalkThrough Video Link: 
+<https://youtu.be/RFBqj6F-0jM>
+
 ## Github URL Link: 
 https://github.com/smith-utxo/cli-team-member-tracker
 
