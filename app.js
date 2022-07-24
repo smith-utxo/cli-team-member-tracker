@@ -9,7 +9,7 @@ const menu = () => {
       type: 'list',
       message: 'What would you like to do?',
       name: 'menu',
-      choices: ['Update Employee Role', 'View All Roles', 'Add Role', 'View All Departments', 'Add Department', 'View All Employees', 'Quit'],
+      choices: ['Update Employee Role', 'Add Employee', 'View All Roles', 'Add Role', 'View All Departments', 'Add Department', 'View All Employees', 'Quit'],
     }])
     .then(selection => {
       switch (selection.menu) {
@@ -18,6 +18,9 @@ const menu = () => {
           break;
         case 'View All Roles':
           viewAllRoles();
+          break;
+        case 'Add Employee':
+          addEmployee();
           break;
         case 'Add Role':
           addRole();
@@ -48,6 +51,48 @@ const UpdateEmployeeRoles = () => {
     }]
   )
   menu();
+}
+
+const addEmployee = () => {
+  inquirer.prompt(
+    [{
+      type: 'input',
+      name: 'fname',
+      message: 'What is the employees first name?',
+
+    },
+    {
+      type: 'input',
+      name: 'lname',
+      message: 'What is the employees last name?'
+    },
+    {
+      type: 'input',
+      name: 'role',
+      message: 'What is the employees role ID #?',
+    },
+    {
+      type: 'input',
+      name: 'manager',
+      message: 'Who is the employees manager?', 
+    }
+  ])
+  .then(function(answers) {
+    const firstName = answers.fname; 
+    const lastName = answers.lname; 
+    const role = answers.role; 
+    const mgr = answers.manager; 
+
+    const sql = `INSERT INTO employees (first_name, last_name, roles_id, manager) VALUES ("${firstName}", "${lastName}", "${role}", "${mgr}")`;
+
+    connection.query(sql, function(err, res) {
+      if(err) {
+        throw err; 
+      }
+      console.log("Employee " + firstName + " " + lastName + " Added!" );
+      menu(); 
+    })
+  })
 }
 
 const viewAllRoles = () => {
@@ -91,15 +136,7 @@ const addRole = () => {
         menu();
       })
     })
-  /*
-    .then(({title, salary, department}) => {
-      const sql = connection.query(
-        `INSERT INTO roles (title, salary, department)
-        VALUES (?, ?, ?)`,
-      });
-      menu();
-      */
-}
+  }
 
 const viewAllDepartments = () => {
   const sql = `SELECT * from departments`;
@@ -127,9 +164,6 @@ const addDepartment = () => {
         console.table(res);
         menu();
       })
-      /*
-      connection.query('INSERT INTO departments SET label = ?', insert );
-      */
     })
 }
 
@@ -140,6 +174,7 @@ const viewAllEmployees = () => {
     menu();
   })
 }
+
 
 
 menu(); 
